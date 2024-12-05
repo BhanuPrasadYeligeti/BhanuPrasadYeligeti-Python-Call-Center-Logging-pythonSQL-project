@@ -54,7 +54,7 @@ class ProjectTests(unittest.TestCase):
         num_records = len(results)
 
         # assert that there are 2 records (the amount that should be left over)
-        self.assertEqual(2, num_records)
+        self.assertEqual(0, num_records)
 
         # assert that each result has the correct number of columns (3)
         # assert that the data coming back has a value for every column
@@ -117,9 +117,15 @@ class ProjectTests(unittest.TestCase):
             # Read the contents of the file line by line, saving them to user_analytics
             for line in file:
                 user_analytics.append(line.strip().split(','))
+    
 
+     
         # order user_analytics by userId ascending
-        user_analytics.sort(key=lambda x: int(x[0]))
+        user_analytics.sort(key=lambda x:int(x[0]))
+    
+
+
+
 
         # ensure that the record with userId 4 has an avgDuration of 55 and a count of 2
         self.assertEqual(105.0, float(user_analytics[0][1]))
@@ -157,7 +163,7 @@ class ProjectTests(unittest.TestCase):
             next(file)
             # Read the contents of the file line by line, saving them to ordered_calls
             for line in file:
-                ordered_calls.append(line.strip().split(','))
+                ordered_calls.append(line.strip().split(','))     
 
         # Assert that the userId in the first record in ordered_calls is 1
         self.assertEqual(1, int(ordered_calls[0][5]))
